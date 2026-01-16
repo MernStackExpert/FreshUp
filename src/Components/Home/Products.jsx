@@ -1,6 +1,19 @@
+import axiosInstance from "@/lib/axiosInstance";
 import ProductCard from "@/Shared/ProductCard";
 
-export default function Products() {
+export default async function Products() {
+  let featuredProducts = [];
+
+  try {
+    const response = await axiosInstance.get("/grocery");
+
+    const { grocery } = response.data;
+    
+    featuredProducts = grocery?.slice(0, 8) || [];
+  } catch (error) {
+    console.error("Error fetching products:", error);
+  }
+
   return (
     <section className="pt-20 bg-base-100">
       <div className="container mx-auto px-6">
@@ -12,15 +25,19 @@ export default function Products() {
             </h2>
           </div>
           <div className="flex gap-3">
-            <button className="btn btn-ghost hover:bg-primary hover:text-white rounded-full px-6">New Arrivals</button>
-            <button className="btn btn-primary rounded-full px-6 shadow-lg shadow-primary/20">Best Rated</button>
+            <button className="btn btn-ghost hover:bg-primary hover:text-white rounded-full px-6 text-sm font-bold uppercase">New Arrivals</button>
+            <button className="btn btn-primary rounded-full px-6 shadow-lg shadow-primary/20 text-sm font-bold uppercase">Best Rated</button>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {featuredProducts.length > 0 ? (
+            featuredProducts.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))
+          ) : (
+            <p className="text-center col-span-full py-10 text-gray-400">No products found.</p>
+          )}
         </div>
         
         <div className="mt-16 text-center">
