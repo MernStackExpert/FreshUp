@@ -20,7 +20,7 @@ const handler = NextAuth({
           name: "MR USER",
           email: "mruser@freshup.com",
           password: "1234Nn",
-          image: "https://i.pravatar.cc/150?u=nirob",
+          image: "https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg?semt=ais_hybrid&w=740&q=80",
         };
 
         if (

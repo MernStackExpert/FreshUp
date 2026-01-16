@@ -5,8 +5,9 @@ import { FaGoogle, FaEnvelope, FaLock, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  // Requirement onujayi default email and password set kora hoyeche
+  const [email, setEmail] = useState("mruser@freshup.com");
+  const [password, setPassword] = useState("1234Nn");
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
@@ -22,7 +23,8 @@ export default function LoginPage() {
     if (res?.error) {
       setError("Invalid Email or Password! Please try again.");
     } else {
-      window.location.href = "/"; 
+      // Login success hole items page a niye jaoa rasm (Requirement onusare)
+      window.location.href = "/items"; 
     }
   };
 
@@ -84,7 +86,7 @@ export default function LoginPage() {
           <div className="divider my-8 text-gray-400 text-xs font-bold uppercase tracking-widest">OR</div>
 
           <button 
-            onClick={() => signIn("google", { callbackUrl: "/" })}
+            onClick={() => signIn("google", { callbackUrl: "/items" })}
             className="btn btn-lg btn-outline w-full rounded-2xl border-base-300 hover:bg-base-200 hover:text-base-content gap-3 h-16"
           >
             <FaGoogle className="text-error" /> 
@@ -92,7 +94,7 @@ export default function LoginPage() {
           </button>
 
           <p className="text-center mt-8 text-gray-500 font-medium">
-            Don't have an account? <a href="#" className="text-primary font-bold hover:underline">Register Now</a>
+            Test Credentials are pre-filled for your convenience.
           </p>
         </div>
       </motion.div>

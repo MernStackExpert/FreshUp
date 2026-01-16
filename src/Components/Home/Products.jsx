@@ -1,44 +1,5 @@
 import ProductCard from "@/Shared/ProductCard";
 
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Organic Red Fuji Apple",
-    price: 4.99,
-    oldPrice: 6.50,
-    weight: "1kg",
-    rating: 4.8,
-    discount: 20,
-    image: "https://images.unsplash.com/photo-1560806887-1e4cd0b6bcd6?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 2,
-    name: "Fresh Broccoli Crowns",
-    price: 2.45,
-    weight: "500g",
-    rating: 4.5,
-    image: "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 3,
-    name: "Farm Fresh Large Brown Eggs",
-    price: 12.00,
-    oldPrice: 15.00,
-    weight: "12 pcs",
-    rating: 4.9,
-    discount: 15,
-    image: "https://images.unsplash.com/photo-1516746924755-babd21844370?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    id: 4,
-    name: "Whole Grain Organic Bread",
-    price: 3.50,
-    weight: "400g",
-    rating: 4.7,
-    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=400"
-  }
-];
-
 export default function Products() {
   return (
     <section className="pt-20 bg-base-100">

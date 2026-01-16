@@ -1,8 +1,9 @@
 "use client"
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -14,6 +15,7 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-base-100/80 backdrop-blur-md shadow-sm">
@@ -81,23 +83,46 @@ export default function Navbar() {
             <FaSearch className="absolute left-3 text-gray-400 text-xs" />
           </div>
 
-          {/* User */}
-          <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border border-base-200 shadow-sm">
-              <div className="w-9 rounded-full">
-                <Image src="https://i.pravatar.cc/150?u=nirob" alt="User" width={36} height={36} className="rounded-full" />
+          {/* User Profile / Login-Logout Logic */}
+          {status === "authenticated" ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border-2 border-primary shadow-sm">
+                  <div className="w-9 rounded-full">
+                    <Image 
+                      src={session.user?.image || "https://i.pravatar.cc/150?u=fallback"} 
+                      alt="User Profile" 
+                      width={36} 
+                      height={36} 
+                      className="rounded-full" 
+                    />
+                  </div>
+                </div>
+                <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-2xl z-[1] mt-3 w-64 p-4 shadow-2xl border border-base-200 font-medium space-y-2">
+                  <li className="mb-2 border-b border-base-200 pb-2">
+                    <div className="flex flex-col items-start gap-0 cursor-default hover:bg-transparent">
+                      <p className="text-base font-black text-base-content">{session.user?.name}</p>
+                      <p className="text-xs text-gray-400 break-all">{session.user?.email}</p>
+                    </div>
+                  </li>
+                  <li><Link href="/profile" className="py-3 flex items-center gap-2"><FaUserAlt className="text-primary" /> Profile Settings</Link></li>
+                  <li>
+                    <button 
+                      onClick={() => signOut()} 
+                      className="py-3 text-error flex items-center gap-2 hover:bg-error/10"
+                    >
+                      <FaSignOutAlt /> Logout
+                    </button>
+                  </li>
+                </ul>
               </div>
-            </div>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-2xl z-[1] mt-3 w-52 p-2 shadow-2xl border border-base-200 font-medium">
-              <li><a className="py-3">Profile Settings</a></li>
-              <li><a className="py-3">My Orders</a></li>
-              <li><a className="py-3 text-error">Logout</a></li>
-            </ul>
-          </div>
+            </>
+          ) : (
+            <Link href="/login" className="btn btn-primary btn-sm md:btn-md rounded-full px-8 shadow-lg shadow-primary/20 flex items-center gap-2">
+              Login
+            </Link>
+          )}
 
-          <Link href="/login" className="btn btn-primary btn-sm md:btn-md rounded-full px-6 shadow-lg shadow-primary/20 hidden sm:flex">
-            Login
-          </Link>
         </div>
       </div>
     </div>
