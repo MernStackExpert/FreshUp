@@ -7,7 +7,7 @@ import { useSession, signOut } from "next-auth/react";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Groceries", href: "/items" },
+  { name: "Groceries", href: "/allgroceries" },
   { name: "About Us", href: "/about" },
   { name: "Contact Us", href: "/contact" },
   { name: "Our Services", href: "/services" },
