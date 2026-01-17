@@ -45,21 +45,21 @@
    ```bash
    git clone [https://github.com/MernStackExpert/FreshUp.git](https://github.com/MernStackExpert/FreshUp.git)
 
-2. **Install dependencies:**
-   npm install
+2. **Install dependencies:** 
+   --> --> npm install
 
 3. **Configure Environment Variables: Create a .env.local file in the root directory and add:**
-NEXTAUTH_SECRET=your_secret_key
-NEXTAUTH_URL=[https://freshup-client.vercel.app/](https://freshup-client.vercel.app/)
-NEXT_PUBLIC_IMGBB_API_KEY=your_imgbb_key
-NEXT_PUBLIC_API_URL=your_backend_url
+--> NEXTAUTH_SECRET=your_secret_key
+--> NEXTAUTH_URL=[https://freshup-client.vercel.app/](https://freshup-client.vercel.app/)
+--> NEXT_PUBLIC_IMGBB_API_KEY=your_imgbb_key
+--> NEXT_PUBLIC_API_URL=your_backend_url
 
 4. **Run the development server:**
-   npm run dev
+   --> --> npm run dev
 
 
 👤 Developer Info
-Developer: MD NIROB ISLAM
+--> --> Developer: MD NIROB ISLAM
 
 Role: MERN Stack Developer
 
