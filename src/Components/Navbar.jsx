@@ -1,5 +1,5 @@
 "use client"
-import { FaSearch, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { FaDashcube, FaSearch, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -105,7 +105,7 @@ export default function Navbar() {
                       <p className="text-xs text-gray-400 break-all">{session.user?.email}</p>
                     </div>
                   </li>
-                  <li><Link href="/profile" className="py-3 flex items-center gap-2"><FaUserAlt className="text-primary" /> Profile Settings</Link></li>
+                  <li><Link href="/dashboard" className="py-3 flex items-center gap-2"><FaDashcube className="text-primary" /> Dashboard</Link></li>
                   <li>
                     <button 
                       onClick={() => signOut()} 

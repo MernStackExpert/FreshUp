@@ -2,15 +2,27 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 import { dashboardItems } from "@/constants/dashboardItems";
 import Image from "next/image";
 
 export default function DashboardLayout({ children }) {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-base-200">
+        <span className="loading loading-spinner loading-lg text-primary"></span>
+      </div>
+    );
+  }
+
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
 
   return (
     <div className="flex min-h-screen bg-base-200">
-     
       <aside className="w-64 bg-base-100 shadow-xl hidden lg:flex flex-col border-r border-base-300 h-screen sticky top-0">
         <div className="p-8 border-b border-base-300">
           <Link href="/" className="text-2xl font-black italic">
@@ -33,7 +45,6 @@ export default function DashboardLayout({ children }) {
           ))}
         </nav>
 
-        {/* User Profile Section - সবসময় নিচে থাকবে */}
         <div className="p-6 border-t border-base-300 bg-base-200/50 mt-auto">
            <div className="flex items-center gap-3">
               {session?.user?.image ? (
@@ -43,6 +54,7 @@ export default function DashboardLayout({ children }) {
                     alt="profile" 
                     fill 
                     className="object-cover"
+                    unoptimized
                   />
                 </div>
               ) : (
@@ -52,17 +64,16 @@ export default function DashboardLayout({ children }) {
               )}
               <div className="overflow-hidden">
                 <p className="text-xs font-black text-base-content truncate">
-                  {session?.user?.name || "Guest User"}
+                  {session?.user?.name}
                 </p>
                 <p className="text-[10px] text-primary font-bold truncate">
-                  {session?.user?.email || "No email provided"}
+                  {session?.user?.email}
                 </p>
               </div>
            </div>
         </div>
       </aside>
 
-      {/* Main Content Area */}
       <main className="flex-1 p-6 lg:p-12">
         <div className="max-w-6xl mx-auto">
            {children}

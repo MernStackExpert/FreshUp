@@ -24,7 +24,7 @@ export default function LoginPage() {
       setError("Invalid Email or Password! Please try again.");
     } else {
       // Login success hole items page a niye jaoa rasm (Requirement onusare)
-      window.location.href = "/items"; 
+      window.location.href = "/allgroceries"; 
     }
   };
 
