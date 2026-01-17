@@ -4,6 +4,13 @@
 
 ---
 
+## 🔗 Project Links
+
+* **Live Demo:** [https://freshup-client.vercel.app/](https://freshup-client.vercel.app/)
+* **Client Repository:** [https://github.com/MernStackExpert/FreshUp.git](https://github.com/MernStackExpert/FreshUp.git)
+
+---
+
 ## 🚀 Key Features
 
 * **🔐 Secure Authentication:** Integrated with **NextAuth.js** for robust Google and Email-based login systems.
@@ -36,23 +43,28 @@
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/your-username/freshup-client.git](https://github.com/your-username/freshup-client.git)
+   git clone [https://github.com/MernStackExpert/FreshUp.git](https://github.com/MernStackExpert/FreshUp.git)
 
-Install dependencies:
-     npm install
+2. **Install dependencies:**
+   npm install
 
-Configure Environment Variables: Create a .env.local file in the root directory and add:
-
+3. **Configure Environment Variables: Create a .env.local file in the root directory and add:**
 NEXTAUTH_SECRET=your_secret_key
+NEXTAUTH_URL=[https://freshup-client.vercel.app/](https://freshup-client.vercel.app/)
 NEXT_PUBLIC_IMGBB_API_KEY=your_imgbb_key
 NEXT_PUBLIC_API_URL=your_backend_url
 
-Run the development server:
-npm run dev
+4. **Run the development server:**
+   npm run dev
 
-👤 Developer
-MD NIROB ISLAM --> MERN Stack Developer --> 📧 Email: mdnirob30k@gmail.com
 
-📍 Rajshahi, Bangladesh
+👤 Developer Info
+Developer: MD NIROB ISLAM
 
----
+Role: MERN Stack Developer
+
+📧 Email: mdnirob30k@gmail.com
+
+📍 Location: Rajshahi, Bangladesh
+
+🔗 GitHub: MernStackExpert

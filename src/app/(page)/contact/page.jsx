@@ -9,7 +9,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-base-100">
+    <main className="min-h-screen bg-base-100 max-w-7xl mx-auto">
       <section className="relative py-20 bg-primary/5 overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div initial="hidden" animate="visible" variants={fadeIn}>

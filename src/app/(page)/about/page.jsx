@@ -18,7 +18,7 @@ export default function AboutPage() {
   };
 
   return (
-    <main className="min-h-screen bg-base-100">
+    <main className="min-h-screen bg-base-100 max-w-7xl mx-auto">
       {/* 1. Header Section */}
       <section className="relative py-24 bg-primary/5 overflow-hidden">
         <div className="container mx-auto px-6 relative z-10 text-center">

@@ -25,7 +25,7 @@ export default async function AllGroceries({ searchParams }) {
 
   return (
     <div className="min-h-screen bg-base-200 pt-10 pb-20">
-      <div className="container mx-auto px-6">
+      <div className="container max-w-7xl mx-auto px-6">
         
         {/* Top Header Section */}
         <div className="mb-10 text-center lg:text-left">
