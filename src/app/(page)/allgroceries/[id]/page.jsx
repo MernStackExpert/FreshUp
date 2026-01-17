@@ -2,6 +2,8 @@ import axiosInstance from "@/lib/axiosInstance";
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar, FaRegCheckCircle, FaArrowLeft, FaEnvelope, FaBox } from "react-icons/fa";
+import { Toaster } from "react-hot-toast";
+import BuyNowButton from "@/Shared/BuyNowButton";
 
 export default async function ProductDetails({ params }) {
   const { id } = await params;
@@ -25,8 +27,9 @@ export default async function ProductDetails({ params }) {
 
   return (
     <div className="min-h-screen bg-base-200 pt-15 pb-20">
+      <Toaster position="top-center" reverseOrder={false} />
+      
       <div className="container mx-auto px-6">
-        {/* Back Button */}
         <Link href="/allgroceries" className="flex items-center gap-2 text-gray-500 hover:text-primary mb-8 transition-colors font-bold">
           <FaArrowLeft /> Back to All Groceries
         </Link>
@@ -34,7 +37,6 @@ export default async function ProductDetails({ params }) {
         <div className="bg-base-100 rounded-[3rem] shadow-xl overflow-hidden border border-base-300">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             
-            {/* Left: Image Section */}
             <div className="relative h-[400px] lg:h-full min-h-[500px] bg-base-200">
               <Image
                 src={product.image}
@@ -50,7 +52,6 @@ export default async function ProductDetails({ params }) {
               </div>
             </div>
 
-            {/* Right: Content Section */}
             <div className="p-8 lg:p-16 flex flex-col justify-center">
               <div className="flex items-center gap-2 text-orange-500 mb-4">
                 <div className="flex">
@@ -96,9 +97,9 @@ export default async function ProductDetails({ params }) {
                   <span className="text-xs text-gray-400 font-bold uppercase tracking-widest">Total Price</span>
                   <span className="text-5xl font-black text-primary">${product.price}</span>
                 </div>
-                <button className="btn btn-primary btn-lg flex-1 w-full rounded-2xl shadow-xl shadow-primary/20 text-white gap-3 text-lg">
-                  Add To Cart
-                </button>
+                
+                {/* Client Component Button */}
+                <BuyNowButton productName={product.name} />
               </div>
 
               <div className="mt-8 flex items-center gap-2 text-green-600 font-bold">
