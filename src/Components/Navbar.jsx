@@ -1,8 +1,9 @@
 "use client"
-import { FaDashcube, FaSearch, FaSignOutAlt, FaUserAlt } from "react-icons/fa";
+import { useState } from "react";
+import { FaDashcube, FaSearch, FaSignOutAlt } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 
 const navLinks = [
@@ -15,13 +16,22 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const router = useRouter();
   const { data: session, status } = useSession();
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      router.push(`/allgroceries?search=${encodeURIComponent(searchTerm)}`);
+      setSearchTerm("");
+    }
+  };
 
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-base-100/80 backdrop-blur-md shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 md:px-12 h-16">
         
-        {/* Logo & Mobile Dropdown */}
         <div className="flex items-center gap-4">
           <div className="dropdown lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost">
@@ -51,7 +61,6 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Desktop Menu */}
         <div className="hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-semibold gap-4">
             {navLinks.map(link => {
@@ -70,59 +79,57 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* Right Side */}
         <div className="flex items-center gap-2 md:gap-4">
-
-          {/* Search */}
-          <div className="hidden md:flex items-center relative group">
+          {/* Search Form */}
+          <form onSubmit={handleSearch} className="hidden md:flex items-center relative group">
             <input 
               type="text" 
               placeholder="Search groceries..." 
-              className="input input-sm input-bordered rounded-full w-40 focus:w-60 transition-all duration-300 pl-8" 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="input input-sm input-bordered rounded-full w-40 focus:w-60 transition-all duration-300 pl-8 focus:outline-primary" 
             />
-            <FaSearch className="absolute left-3 text-gray-400 text-xs" />
-          </div>
+            <button type="submit" className="absolute left-3 text-gray-400 text-xs hover:text-primary transition-colors">
+              <FaSearch />
+            </button>
+          </form>
 
-          {/* User Profile / Login-Logout Logic */}
           {status === "authenticated" ? (
-            <>
-              <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border-2 border-primary shadow-sm">
-                  <div className="w-9 rounded-full">
-                    <Image 
-                      src={session.user?.image || "https://i.pravatar.cc/150?u=fallback"} 
-                      alt="User Profile" 
-                      width={36} 
-                      height={36} 
-                      className="rounded-full" 
-                    />
-                  </div>
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar border-2 border-primary shadow-sm">
+                <div className="w-9 rounded-full">
+                  <Image 
+                    src={session.user?.image || "https://i.pravatar.cc/150?u=fallback"} 
+                    alt="User Profile" 
+                    width={36} 
+                    height={36} 
+                    className="rounded-full" 
+                  />
                 </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-2xl z-[1] mt-3 w-64 p-4 shadow-2xl border border-base-200 font-medium space-y-2">
-                  <li className="mb-2 border-b border-base-200 pb-2">
-                    <div className="flex flex-col items-start gap-0 cursor-default hover:bg-transparent">
-                      <p className="text-base font-black text-base-content">{session.user?.name}</p>
-                      <p className="text-xs text-gray-400 break-all">{session.user?.email}</p>
-                    </div>
-                  </li>
-                  <li><Link href="/dashboard" className="py-3 flex items-center gap-2"><FaDashcube className="text-primary" /> Dashboard</Link></li>
-                  <li>
-                    <button 
-                      onClick={() => signOut()} 
-                      className="py-3 text-error flex items-center gap-2 hover:bg-error/10"
-                    >
-                      <FaSignOutAlt /> Logout
-                    </button>
-                  </li>
-                </ul>
               </div>
-            </>
+              <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-2xl z-[1] mt-3 w-64 p-4 shadow-2xl border border-base-200 font-medium space-y-2">
+                <li className="mb-2 border-b border-base-200 pb-2">
+                  <div className="flex flex-col items-start gap-0 cursor-default hover:bg-transparent">
+                    <p className="text-base font-black text-base-content">{session.user?.name}</p>
+                    <p className="text-xs text-gray-400 break-all">{session.user?.email}</p>
+                  </div>
+                </li>
+                <li><Link href="/dashboard" className="py-3 flex items-center gap-2"><FaDashcube className="text-primary" /> Dashboard</Link></li>
+                <li>
+                  <button 
+                    onClick={() => signOut()} 
+                    className="py-3 text-error flex items-center gap-2 hover:bg-error/10"
+                  >
+                    <FaSignOutAlt /> Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
           ) : (
-            <Link href="/login" className="btn btn-primary btn-sm md:btn-md rounded-full px-8 shadow-lg shadow-primary/20 flex items-center gap-2">
+            <Link href="/login" className="btn btn-primary btn-sm md:btn-md rounded-full px-8 shadow-lg shadow-primary/20">
               Login
             </Link>
           )}
-
         </div>
       </div>
     </div>

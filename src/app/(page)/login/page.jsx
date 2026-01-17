@@ -86,7 +86,7 @@ export default function LoginPage() {
           <div className="divider my-8 text-gray-400 text-xs font-bold uppercase tracking-widest">OR</div>
 
           <button 
-            onClick={() => signIn("google", { callbackUrl: "/items" })}
+            onClick={() => signIn("google", { callbackUrl: "/allgroceries" })}
             className="btn btn-lg btn-outline w-full rounded-2xl border-base-300 hover:bg-base-200 hover:text-base-content gap-3 h-16"
           >
             <FaGoogle className="text-error" /> 

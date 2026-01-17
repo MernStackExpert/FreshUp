@@ -91,12 +91,12 @@ export default function AddItemPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="form-control">
             <label className="block text-sm font-black text-gray-600 uppercase mb-3">Product Name</label>
-            <input {...register("name", { required: true })} type="text" placeholder="Organic Tomato" className="input input-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50" />
+            <input {...register("name", { required: true })} type="text" placeholder="Organic Tomato" className="input input-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50 w-full" />
           </div>
 
           <div className="form-control">
             <label className="block text-sm font-black text-gray-600 uppercase mb-3">Category</label>
-            <select {...register("category", { required: true })} className="select select-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50 font-bold">
+            <select {...register("category", { required: true })} className="select select-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50 font-bold w-full">
               <option value="Vegetables">Vegetables</option>
               <option value="Fruits">Fruits</option>
               <option value="Dairy">Dairy</option>
@@ -154,11 +154,11 @@ export default function AddItemPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="form-control">
             <label className="block text-sm font-black text-gray-600 uppercase mb-3">Price ($)</label>
-            <input {...register("price", { required: true })} type="number" step="0.01" className="input input-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50" />
+            <input {...register("price", { required: true })} type="number" step="0.01" className="input input-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50 w-full" />
           </div>
           <div className="form-control">
             <label className="block text-sm font-black text-gray-600 uppercase mb-3">Stock</label>
-            <input {...register("stock", { required: true })} type="number" className="input input-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50" />
+            <input {...register("stock", { required: true })} type="number" className="input input-bordered rounded-2xl h-14 focus:outline-primary bg-base-200/50 w-full " />
           </div>
           <div className="form-control">
             <label className="block text-sm font-black text-gray-600 uppercase mb-3">Rating</label>
